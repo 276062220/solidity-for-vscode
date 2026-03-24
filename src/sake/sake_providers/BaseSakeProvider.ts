@@ -320,6 +320,12 @@ export abstract class BaseSakeProvider<TNetworkProvider extends NetworkProvider>
         }
     }
 
+    async refreshAllAccount() {
+        this.chainState.accounts.getAll().forEach(a=>{
+            this.refreshAccount(a.address);
+        });
+    }
+
     /* Deployment management */
 
     async deployContract(deploymentRequest: DeploymentRequest): Promise<boolean> {
@@ -346,6 +352,9 @@ export abstract class BaseSakeProvider<TNetworkProvider extends NetworkProvider>
                 fqn: deploymentRequest.contractFqn,
                 balance: balance
             });
+
+            console.log('wzn1987 deployContract', deploymentResponse);
+            this.refreshAllAccount();
 
             showTimedInfoMessage(
                 `Deployed contract ${compiledContract.name} at address ${deploymentResponse.deployedAddress}`
@@ -386,6 +395,8 @@ export abstract class BaseSakeProvider<TNetworkProvider extends NetworkProvider>
         if (callResponse.success) {
             try {
                 decoded = decodeCallReturnValue(callResponse.returnValue, callRequest.functionAbi);
+                console.log('wzn1987 callContract', callRequest);
+                this.refreshAllAccount();
             } catch (e) {
                 showErrorMessage('Failed to decode return value: ' + e, true);
             }
@@ -424,6 +435,8 @@ export abstract class BaseSakeProvider<TNetworkProvider extends NetworkProvider>
                     callResponse.returnValue,
                     transactRequest.functionAbi
                 );
+                console.log('wzn1987 transactRequest', transactRequest);
+                this.refreshAllAccount();
             } catch (e) {
                 showErrorMessage('Failed to decode return value: ' + e, true);
             }

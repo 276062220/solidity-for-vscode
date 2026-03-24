@@ -1,3 +1,11 @@
+# 注意
+## 这项目是fork自 [Ackee-Blockchain/solidity-for-vscode](https://github.com/Ackee-Blockchain/solidity-for-vscode)
+### 这里只做了一些简单改动，更方便开发、调试，改动如下：
+  - 1.文件: \src\sake\sake_providers\BaseSakeProvider.ts，增加刷新所有账号余额的功能，并且在调用合约函数、往合约转账、部署合约的地方刷新所有账号余额。
+  - 2.文件: \src\sake\webview\src\views\TransactionParameters.svelte，增加账号下拉列表余额显示，钱包地址标准显示。
+  - 3.文件: \src\sake\webview\src\components\Contract.svelte, 合约地址标准显示。
+
+
 # Solidity by Ackee Blockchain Security
 
 [![Discord Badge](https://img.shields.io/discord/867746290678104064?colorA=21262d&colorB=0000FF&style=flat)](https://discord.gg/x7qXXnGCsa)
@@ -13,23 +21,31 @@ Develop, test, and secure Solidity smart contracts directly in Visual Studio Cod
 This extension was built by a leading blockchain auditing firm that has worked with Lido, AAVE, Axelar, Safe, LayerZero, and more. It was developed for our professional needs and made open-source for a safer web3.
 
 Benefits:
-- [Test and interact with your smart contracts on an Ethereum local node](#test-and-interact-with-your-smart-contracts-on-an-ethereum-local-node)
-  - [Compile and deploy contracts](#compile-and-deploy-contracts)
-  - [Interact with contracts](#interact-with-contracts)
-  - [Fork mainnet or L2s to interact with onchain contracts](#forking-chain-and-fetching-contracts)
-  - [Native support for proxy contracts](#native-support-for-proxy-contracts)
-- [See vulnerabilities from static analysis in real-time](#see-vulnerabilities-from-static-analysis-in-real-time)
-  - [Compilation Errors](#compilation-errors)
-  - [See vulnerabilities from static analysis in real-time](#see-vulnerabilities-from-static-analysis-in-real-time-1)
-  - [Security Overview in the Sidebar](#security-overview-in-the-sidebar)
-- [Best code navigation experience, call-graphs and more](#best-code-navigation-experience-call-graphs-and-more)
-  - [Go to definition](#go-to-definition)
-  - [Find references](#find-references)
-  - [Document Links](#document-links)
-  - [Hover](#hover)
-  - [Contract Outline](#contract-outline)
-  - [Code Lens](#code-lens)
-  - [Graphs](#graphs)
+- [注意](#注意)
+  - [这项目是fork自 Ackee-Blockchain/solidity-for-vscode](#这项目是fork自-ackee-blockchainsolidity-for-vscode)
+    - [这里只做了一些简单改动，更方便开发、调试，改动如下：](#这里只做了一些简单改动更方便开发调试改动如下)
+- [Solidity by Ackee Blockchain Security](#solidity-by-ackee-blockchain-security)
+  - [Test and interact with your smart contracts on an Ethereum local node](#test-and-interact-with-your-smart-contracts-on-an-ethereum-local-node)
+    - [Compile and deploy contracts](#compile-and-deploy-contracts)
+    - [Interact with contracts](#interact-with-contracts)
+    - [Fork mainnet or L2s to interact with onchain contracts](#fork-mainnet-or-l2s-to-interact-with-onchain-contracts)
+    - [Native support for proxy contracts](#native-support-for-proxy-contracts)
+  - [See vulnerabilities from static analysis in real-time](#see-vulnerabilities-from-static-analysis-in-real-time)
+    - [Free detections with leading security tool Wake](#free-detections-with-leading-security-tool-wake)
+    - [Security Overview in the Sidebar](#security-overview-in-the-sidebar)
+    - [Compilation Errors](#compilation-errors)
+  - [Best code navigation experience, call-graphs and more](#best-code-navigation-experience-call-graphs-and-more)
+    - [Go to definition](#go-to-definition)
+    - [Find references](#find-references)
+    - [Document Links](#document-links)
+    - [Hover](#hover)
+    - [Contract Outline](#contract-outline)
+    - [Code Lens](#code-lens)
+    - [Graphs](#graphs)
+  - [Requirements](#requirements)
+  - [Credits](#credits)
+  - [Feedback, help and news](#feedback-help-and-news)
+  - [Known Issues](#known-issues)
 
 ## Test and interact with your smart contracts on an Ethereum local node
 

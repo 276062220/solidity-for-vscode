@@ -19,6 +19,7 @@
     import ExpandButton from './icons/ExpandButton.svelte';
     import RadioTowerCrossedIcon from './icons/RadioTowerCrossedIcon.svelte';
     import RadioTowerIcon from './icons/RadioTowerIcon.svelte';
+    import { getAddress } from 'ethers';
 
     export let contract: DeployedContract;
     export let onFunctionCall: (
@@ -86,7 +87,7 @@
                         >{contract.type === DeployedContractType.Compiled
                             ? 'Deployed to'
                             : 'Fetched from'}
-                        <CopyableSpan text={contract.address} className="truncate text-sm" />
+                        <CopyableSpan text={getAddress(contract.address)} className="truncate text-sm" />
                     </span>
                     <!-- <span class="truncate text-sm">{contract.address}</span> -->
                     <!-- <CopyButton callback={() => copyToClipboard(contract.address)} /> -->

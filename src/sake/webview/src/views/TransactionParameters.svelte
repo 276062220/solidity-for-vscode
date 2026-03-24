@@ -17,6 +17,7 @@
         setSelectedAccount,
         txParametersExpanded
     } from '../helpers/stores';
+    import { getAddress } from 'ethers';
 
     function handleAccountChange(event: any) {
         const _selectedAccountIndex = event.detail.value;
@@ -83,13 +84,13 @@
                         <vscode-option
                             value={i}
                             selected={account.address == $selectedAccount?.address}
-                            >Account {i}</vscode-option
+                            >Account {i} {displayEtherValue(BigInt(account.balance))}</vscode-option
                         >
                     {/each}
                     <!-- @dev hack to display selected account -->
                     <span slot="selected-value">
                         {#if $selectedAccountId !== null}
-                            {$selectedAccount?.label ?? `Account ${$selectedAccountId}`}
+                            Account {$selectedAccountId} {displayEtherValue(BigInt($selectedAccount?.balance ?? 0))}
                         {/if}
                     </span>
                 </vscode-dropdown>
@@ -100,7 +101,7 @@
                             <!-- <span class="flex-1 truncate text-sm">{$selectedAccount.address}</span> -->
                             <!-- <span class="flex-1 truncate text-sm">{accounts[selectedAccountIndex].address}</span> -->
                             <CopyableSpan
-                                text={$selectedAccount.address}
+                                text={getAddress($selectedAccount.address)}
                                 className="flex-1 truncate text-sm"
                             />
                             <!-- <CopyButton callback={() => copyToClipboard($selectedAccount.address)} /> -->
