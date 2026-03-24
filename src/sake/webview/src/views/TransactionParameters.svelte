@@ -19,6 +19,28 @@
     } from '../helpers/stores';
     import { getAddress } from 'ethers';
 
+    /**
+     * 格式化地址，保留前后指定长度字符，中间用 ... 替换
+     * @param address 以太坊地址（如 0x1234...）
+     * @param prefixLen 保留的前缀长度（默认 5）
+     * @param suffixLen 保留的后缀长度（默认 5）
+     * @returns 格式化后的地址字符串
+     */
+    function formatAddress(
+        address: string,
+        prefixLen: number = 5,
+        suffixLen: number = 5
+    ): string {
+        if (!address) return '';
+        // 如果地址长度小于等于前后保留长度之和，直接返回原地址
+        if (address.length <= prefixLen + suffixLen) {
+            return address;
+        }
+        const prefix = address.slice(0, prefixLen);
+        const suffix = address.slice(-suffixLen);
+        return `${prefix}...${suffix}`;
+    }
+
     function handleAccountChange(event: any) {
         const _selectedAccountIndex = event.detail.value;
 
@@ -84,7 +106,7 @@
                         <vscode-option
                             value={i}
                             selected={account.address == $selectedAccount?.address}
-                            >Account {i} {displayEtherValue(BigInt(account.balance))}</vscode-option
+                            >{i} {formatAddress(getAddress(account.address))} ({displayEtherValue(BigInt(account.balance))})</vscode-option
                         >
                     {/each}
                     <!-- @dev hack to display selected account -->

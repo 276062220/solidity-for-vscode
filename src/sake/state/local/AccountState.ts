@@ -74,4 +74,8 @@ export class AccountStateProvider extends GenericHook<AccountState> {
             })
         );
     }
+
+    public getAll() {
+        return this.get();
+    }
 }

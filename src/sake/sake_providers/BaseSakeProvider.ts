@@ -48,6 +48,7 @@ import {
 import sakeProviderManager from './SakeProviderManager';
 import SakeState from './SakeState';
 import { DeploymentResponse } from '../webview/shared/network_types';
+import { ExtendedAccount } from '../webview/shared/types';
 
 export interface ISakeProvider {
     id: string;
@@ -321,7 +322,7 @@ export abstract class BaseSakeProvider<TNetworkProvider extends NetworkProvider>
     }
 
     async refreshAllAccount() {
-        this.chainState.accounts.getAll().forEach(a=>{
+        this.chainState.accounts.getAll().forEach((a: ExtendedAccount)=>{
             this.refreshAccount(a.address);
         });
     }

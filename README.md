@@ -1,9 +1,14 @@
 # 注意
 ## 这项目是fork自 [Ackee-Blockchain/solidity-for-vscode](https://github.com/Ackee-Blockchain/solidity-for-vscode)
+
 ### 这里只做了一些简单改动，更方便开发、调试，改动如下：
   - 1.文件: \src\sake\sake_providers\BaseSakeProvider.ts，增加刷新所有账号余额的功能，并且在调用合约函数、往合约转账、部署合约的地方刷新所有账号余额。
   - 2.文件: \src\sake\webview\src\views\TransactionParameters.svelte，增加账号下拉列表余额显示，钱包地址标准显示。
   - 3.文件: \src\sake\webview\src\components\Contract.svelte, 合约地址标准显示。
+  - 4.文件：\src\sake\state\local\AccountState.ts, 增加获取所有账号的方法。
+### 打包方法：
+  - npm run build
+  - vsce package
 
 
 # Solidity by Ackee Blockchain Security
@@ -24,6 +29,7 @@ Benefits:
 - [注意](#注意)
   - [这项目是fork自 Ackee-Blockchain/solidity-for-vscode](#这项目是fork自-ackee-blockchainsolidity-for-vscode)
     - [这里只做了一些简单改动，更方便开发、调试，改动如下：](#这里只做了一些简单改动更方便开发调试改动如下)
+    - [打包方法：](#打包方法)
 - [Solidity by Ackee Blockchain Security](#solidity-by-ackee-blockchain-security)
   - [Test and interact with your smart contracts on an Ethereum local node](#test-and-interact-with-your-smart-contracts-on-an-ethereum-local-node)
     - [Compile and deploy contracts](#compile-and-deploy-contracts)

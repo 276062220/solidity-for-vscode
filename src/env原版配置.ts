@@ -1,0 +1,1 @@
+export const TELEMETRY_KEY = "InstrumentationKey=f07a98be-9488-45be-9ff7-79c5c615f6dc;IngestionEndpoint=https://francecentral-1.in.applicationinsights.azure.com/;LiveEndpoint=https://francecentral.livediagnostics.monitor.azure.com/;ApplicationId=faaa68ca-ba25-4b45-9561-c9e6cf2419e0"
