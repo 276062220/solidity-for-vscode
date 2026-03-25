@@ -14,10 +14,13 @@
         selectedAccountId,
         selectedValue,
         selectedValueString,
+        selectedValueShow,
         setSelectedAccount,
         txParametersExpanded
     } from '../helpers/stores';
     import { getAddress } from 'ethers';
+
+    let selValueUnit = 'ether';
 
     /**
      * 格式化地址，保留前后指定长度字符，中间用 ... 替换
@@ -57,9 +60,17 @@
     }
 
     function handleValueChange(event: any) {
-        // const _value = parseInt(event.target.value);
-        const _value = event.target.value;
+        let _value = event.target.value;
+        if (_value) {
+            _value = _value + ' ' + selValueUnit;
+        }
         selectedValueString.set(_value ?? null);
+        console.log('handleValueChange', $selectedValue, $selectedValueString, $selectedValueShow);
+    }
+
+    function handleValueUnitChange(event: any) {
+        selValueUnit = event.target.value;
+        console.log('handleValueUnitChange', selValueUnit);
     }
 
     async function topUp() {
@@ -146,24 +157,43 @@
                         content="The ether value which will be sent with the transaction."
                     />
                 </div>
-                <vscode-text-field
-                    placeholder="0 ETH"
-                    class="w-full"
-                    value={$selectedValueString}
-                    on:change={handleValueChange}
-                >
-                    <div slot="end" class="flex items-center">
-                        {#if $selectedValue === null}
-                            <InputIssueIndicator type="danger">
-                                <span class="text-sm">Value could not be parsed</span>
-                            </InputIssueIndicator>
-                        {:else}
-                            <span slot="end" class="flex justify-center align-middle leading-5"
-                                >Ξ</span
-                            >
-                        {/if}
+                <div>
+                <div class="flex flex-row">
+                    <div style="flex: 1;">                        
+                        <vscode-text-field
+                            placeholder="0 ETH"
+                            class="w-full"
+                            value={$selectedValueShow}
+                            on:change={handleValueChange}
+                        >
+                            <div slot="end" class="flex items-center">
+                                {#if $selectedValue === null}
+                                    <InputIssueIndicator type="danger">
+                                        <span class="text-sm">Value could not be parsed</span>
+                                    </InputIssueIndicator>
+                                {:else}
+                                    <span slot="end" class="flex justify-center align-middle leading-5"
+                                        >Ξ</span
+                                    >
+                                {/if}
+                            </div>
+                        </vscode-text-field>
                     </div>
-                </vscode-text-field>
+                    <div style="padding-left: 3px;">
+                        <vscode-dropdown
+                            id="valueUnit"
+                            position="below"
+                            class="w-full mb-2"
+                            on:change={handleValueUnitChange}
+                        >
+                            <vscode-option value='wei'>wei</vscode-option>
+                            <vscode-option value='gwei'>gwei</vscode-option>
+                            <vscode-option value='finney'>finney</vscode-option>
+                            <vscode-option value='ether' selected='true'>ether</vscode-option>
+                        </vscode-dropdown>
+                    </div>
+                </div>
+                </div>
             </div>
         </section>
     {/if}

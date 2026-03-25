@@ -66,6 +66,17 @@ export const selectedValue = derived(selectedValueString, ($selectedValueString)
         return null;
     }
 });
+export const selectedValueShow = derived(selectedValueString, ($selectedValueString) => {
+    if ($selectedValueString === null || $selectedValueString === '') {
+        return null;
+    }
+    try {
+        const parts = $selectedValueString.split(' ');
+        return parts[0];
+    } catch (e) {
+        return null;
+    }
+});
 export const compilationIssuesVisible = writable<boolean>(false);
 compilationState.subscribe((state) => {
     // If compilation issues are visible but there are no issues, hide them
